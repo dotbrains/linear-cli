@@ -51,17 +51,23 @@ linear-cli status
 
 ## Installation
 
-This package is published to [GitHub Packages](https://github.com/dotbrains/linear-cli/packages). Configure the `@dotbrains` scope first:
+This package is published to [GitHub Packages](https://github.com/dotbrains/linear-cli/packages), not npmjs. You must configure the `@dotbrains` scope to point at the GitHub registry before installing:
 
 ```sh
-# .npmrc (project root or ~/.npmrc)
-@dotbrains:registry=https://npm.pkg.github.com
+# Add to ~/.npmrc (one-time setup)
+echo "@dotbrains:registry=https://npm.pkg.github.com" >> ~/.npmrc
 ```
 
 Then install globally:
 
 ```sh
 npm install -g @dotbrains/linear-cli
+```
+
+Alternatively, install directly from GitHub (no `.npmrc` needed):
+
+```sh
+npm install -g github:dotbrains/linear-cli
 ```
 
 Or from source:
