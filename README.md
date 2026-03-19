@@ -59,13 +59,7 @@ Then install globally:
 npm install -g @dotbrains/linear-cli
 ```
 
-Alternatively, install directly from GitHub (no `.npmrc` needed):
-
-```sh
-npm install -g github:dotbrains/linear-cli
-```
-
-Or from source:
+Or install from source:
 
 ```sh
 git clone https://github.com/dotbrains/linear-cli.git

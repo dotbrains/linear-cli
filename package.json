@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "start": "node src/cli.js",
-    "build": "npx esbuild ./src/cli.js --bundle --platform=node --target=node18 --outfile=dist/linear-cli && chmod +x dist/linear-cli",
+    "build": "esbuild ./src/cli.js --bundle --platform=node --target=node18 --outfile=dist/linear-cli && chmod +x dist/linear-cli",
     "lint": "eslint src/",
     "prepublishOnly": "npm run build"
   },
