@@ -128,6 +128,10 @@ A marketing site lives in [`website/`](./website/). Built with Next.js, Tailwind
 cd website && npm install && npm run dev
 ```
 
+## Testing
+
+This project does not include unit tests. Each command is a thin wrapper around [`@linear/sdk`](https://www.npmjs.com/package/@linear/sdk) — the CLI parses arguments, calls the SDK, and prints the response as JSON. There is no business logic to test independently; the SDK itself is tested and maintained by Linear. Correctness is verified by running commands against the live API during development.
+
 ## Dependencies
 
 - **[Node.js](https://nodejs.org/)** >= 18
