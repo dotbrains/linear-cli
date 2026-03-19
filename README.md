@@ -120,14 +120,6 @@ The agent will use `linear` to search for issues, inspect the codebase, and post
 
 See [`SPEC.md`](./SPEC.md) for the full technical specification — every command, its options, step-by-step behavior, authentication flow, pagination strategy, and error handling.
 
-## Website
-
-A marketing site lives in [`website/`](./website/). Built with Next.js, Tailwind, and TypeScript. Run locally:
-
-```sh
-cd website && npm install && npm run dev
-```
-
 ## Testing
 
 This project does not include unit tests. Each command is a thin wrapper around [`@linear/sdk`](https://www.npmjs.com/package/@linear/sdk) — the CLI parses arguments, calls the SDK, and prints the response as JSON. There is no business logic to test independently; the SDK itself is tested and maintained by Linear. Correctness is verified by running commands against the live API during development.
