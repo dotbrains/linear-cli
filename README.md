@@ -116,6 +116,20 @@ With the skill active, you can say things like:
 
 The agent will use `linear-cli` to search for issues, inspect the codebase, and post comments — all autonomously.
 
+## Specification
+
+See [`SPEC.md`](./SPEC.md) for the full technical specification — every command, its options, step-by-step behavior, authentication flow, pagination strategy, and error handling.
+
+## Website
+
+A marketing site lives in [`website/`](./website/). Built with Next.js, Tailwind, and TypeScript. Run locally:
+
+```sh
+cd website && npm install && npm run dev
+```
+
+Deploys to [linear-cli.dotbrains.io](https://linear-cli.dotbrains.io) via Vercel.
+
 ## Dependencies
 
 - **[Node.js](https://nodejs.org/)** >= 18
