@@ -1,6 +1,6 @@
-# linear-cli — CLI for the Linear API
+# linear — CLI for the Linear API
 
-![linear-cli](./assets/og-image.svg)
+![linear](./assets/og-image.svg)
 
 [![CI](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml)
 [![GitHub Package](https://img.shields.io/badge/npm-%40dotbrains%2Flinear--cli-CB3837?logo=npm)](https://github.com/dotbrains/linear-cli/packages)
@@ -16,7 +16,7 @@ A CLI for searching issues, managing comments, listing labels and users, and che
 
 Linear has a rich GraphQL API but no official CLI. When working in the terminal — triaging bugs, scripting issue workflows, or integrating with CI — you need a fast way to query and mutate Linear data without switching to the browser.
 
-`linear-cli` provides:
+`linear` provides:
 
 - **Full-text search** — search issues, documents, or projects from the command line.
 - **Automatic pagination** — all list commands fetch every page, so you always get the full result set.
@@ -30,9 +30,9 @@ Linear has a rich GraphQL API but no official CLI. When working in the terminal 
 
 | Variable | Location | Description |
 |---|---|---|
-| `apiKey` | `~/.config/linear-cli/config.json` | Linear personal API key (`lin_api_...`) |
+| `apiKey` | `~/.config/linear/config.json` | Linear personal API key (`lin_api_...`) |
 
-The config file is created by `linear-cli init`. Generate a personal API key at [Linear > Settings > Security](https://linear.app/settings/account/security).
+The config file is created by `linear init`. Generate a personal API key at [Linear > Settings > Security](https://linear.app/settings/account/security).
 
 ### Config Format
 
@@ -44,18 +44,18 @@ The config file is created by `linear-cli init`. Generate a personal API key at 
 
 ## Commands
 
-### `linear-cli init [--force]`
+### `linear init [--force]`
 
-Set up linear-cli by configuring your API key.
+Set up linear by configuring your API key.
 
 Steps:
-1. Checks if `~/.config/linear-cli/config.json` already exists (exits unless `--force` is passed).
+1. Checks if `~/.config/linear/config.json` already exists (exits unless `--force` is passed).
 2. Prompts for an API key via stdin.
 3. Validates the key by calling `client.viewer` against the Linear API.
-4. Creates the config directory (`~/.config/linear-cli/`) if it doesn't exist.
+4. Creates the config directory (`~/.config/linear/`) if it doesn't exist.
 5. Writes the config file with the validated key.
 
-### `linear-cli search <term>`
+### `linear search <term>`
 
 Full-text search across Linear entities.
 
@@ -68,7 +68,7 @@ Steps:
 2. Calls `client.searchIssues()`, `client.searchDocuments()`, or `client.searchProjects()` based on `--type`.
 3. Prints the result nodes as JSON.
 
-### `linear-cli users`
+### `linear users`
 
 List all organization users.
 
@@ -78,7 +78,7 @@ Steps:
 3. Follows pagination (`fetchNext()`) until all users are collected.
 4. Prints all users as JSON.
 
-### `linear-cli labels`
+### `linear labels`
 
 List all issue labels.
 
@@ -88,7 +88,7 @@ Steps:
 3. Follows pagination until all labels are collected.
 4. Prints all labels as JSON.
 
-### `linear-cli issues --labels <names...>`
+### `linear issues --labels <names...>`
 
 List issues matching one or more labels.
 
@@ -104,7 +104,7 @@ Steps:
 
 When multiple labels are given, issues matching **any** of them are returned (OR semantics).
 
-### `linear-cli issue <id>`
+### `linear issue <id>`
 
 Fetch a single issue by UUID or identifier (e.g. `ENG-123`).
 
@@ -115,7 +115,7 @@ Steps:
 4. Fetches all comments on the issue via `issue.comments()` with pagination.
 5. Prints the issue with its comments as JSON.
 
-### `linear-cli comment-add <issueId> -b <body>`
+### `linear comment-add <issueId> -b <body>`
 
 Add a comment to an issue.
 
@@ -126,7 +126,7 @@ Steps:
 
 The issue can be specified by UUID or identifier. The body is markdown.
 
-### `linear-cli comment-edit <commentId> -b <body>`
+### `linear comment-edit <commentId> -b <body>`
 
 Edit an existing comment by its UUID.
 
@@ -135,7 +135,7 @@ Steps:
 2. Calls `client.updateComment(commentId, { body })`.
 3. Prints the updated comment as JSON.
 
-### `linear-cli comment-delete <commentId>`
+### `linear comment-delete <commentId>`
 
 Delete a comment by its UUID.
 
@@ -144,7 +144,7 @@ Steps:
 2. Calls `client.deleteComment(commentId)`.
 3. Prints `{ "success": true/false }` as JSON.
 
-### `linear-cli comment-get <commentId>`
+### `linear comment-get <commentId>`
 
 Get a comment by its UUID.
 
@@ -153,7 +153,7 @@ Steps:
 2. Calls `client.comment({ id: commentId })`.
 3. Prints the comment as JSON.
 
-### `linear-cli comments-mine`
+### `linear comments-mine`
 
 List comments created by the authenticated user.
 
@@ -167,7 +167,7 @@ Steps:
 4. Follows pagination until all comments are collected.
 5. Prints all comments as JSON.
 
-### `linear-cli status`
+### `linear status`
 
 Check Linear platform status.
 
@@ -182,9 +182,9 @@ This command does not require an API key.
 
 ### Authentication
 
-The CLI reads a personal API key from `~/.config/linear-cli/config.json`. The key is loaded once per process and cached in memory. A `LinearClient` instance from `@linear/sdk` is created on demand for each command.
+The CLI reads a personal API key from `~/.config/linear/config.json`. The key is loaded once per process and cached in memory. A `LinearClient` instance from `@linear/sdk` is created on demand for each command.
 
-If the config file is missing, the CLI prints an error directing the user to run `linear-cli init`. If the file exists but contains a legacy `cookie` field instead of `apiKey`, a migration message is shown.
+If the config file is missing, the CLI prints an error directing the user to run `linear init`. If the file exists but contains a legacy `cookie` field instead of `apiKey`, a migration message is shown.
 
 ### Pagination
 
@@ -209,7 +209,7 @@ The `status` command bypasses the Linear SDK entirely. It makes a raw HTTPS GET 
 
 ```mermaid
 flowchart LR
-    User -->|linear-cli <cmd>| CLI[cli.js]
+    User -->|linear <cmd>| CLI[cli.js]
     CLI --> Init[init.js]
     CLI --> Search[search.js]
     CLI --> Users[users.js]
@@ -239,11 +239,11 @@ sequenceDiagram
     participant Config as config.js
     participant SDK as @linear/sdk
 
-    User->>CLI: linear-cli <command> [args]
+    User->>CLI: linear <command> [args]
     CLI->>CLI: Commander parses argv
     CLI->>Cmd: dispatch to action handler
     Cmd->>Config: createClient()
-    Config->>Config: loadConfig() — read ~/.config/linear-cli/config.json
+    Config->>Config: loadConfig() — read ~/.config/linear/config.json
     Config->>SDK: new LinearClient({ apiKey })
     SDK-->>Cmd: client
     Cmd->>SDK: API call (search, list, mutate)
@@ -294,7 +294,7 @@ ESLint with the flat config (`eslint.config.js`) runs on all files in `src/`. Co
 
 ### Build Verification
 
-The build step uses esbuild to bundle `src/cli.js` into a single `dist/linear-cli` file targeting Node 18. This runs as part of CI to catch import errors and missing dependencies.
+The build step uses esbuild to bundle `src/cli.js` into a single `dist/linear` file targeting Node 18. This runs as part of CI to catch import errors and missing dependencies.
 
 ### Running Checks
 
@@ -350,14 +350,14 @@ npm install -g @dotbrains/linear-cli
 
 ## Implementation Language
 
-**JavaScript** (CommonJS). Published as `@dotbrains/linear-cli` on [GitHub Packages](https://github.com/dotbrains/linear-cli/packages). Distributed as a single bundled file via `dist/linear-cli` (esbuild, targeting Node 18). The `bin` field in `package.json` points to `dist/linear-cli`.
+**JavaScript** (CommonJS). Published as `@dotbrains/linear-cli` on [GitHub Packages](https://github.com/dotbrains/linear-cli/packages). Distributed as a single bundled file via `dist/linear` (esbuild, targeting Node 18). The `bin` field in `package.json` points to `dist/linear`.
 
 Key dependencies:
 - **[`@linear/sdk@^78.0.0`](https://www.npmjs.com/package/@linear/sdk)** — official Linear GraphQL API client. Handles authentication, query building, pagination cursors, and type-safe responses.
 - **[`commander@^14.0.3`](https://www.npmjs.com/package/commander)** — CLI framework. Parses arguments, registers subcommands, generates help text.
 
 Dev dependencies:
-- **[`esbuild@^0.27.4`](https://esbuild.github.io/)** — bundler. Produces the single-file `dist/linear-cli` executable.
+- **[`esbuild@^0.27.4`](https://esbuild.github.io/)** — bundler. Produces the single-file `dist/linear` executable.
 - **[`eslint@^10.0.3`](https://eslint.org/)** + **`@eslint/js@^10.0.1`** — linter with flat config.
 
 ## Design Decisions
@@ -372,7 +372,7 @@ The official SDK provides typed methods, built-in pagination helpers (`fetchNext
 
 ### 3. Identifier fallback via search
 
-`linear-cli issue ENG-123` first tries a direct UUID lookup. If that throws (because `ENG-123` is an identifier, not a UUID), it falls back to `searchIssues` with `first: 1`. This gives users the ergonomics of typing identifiers (what they see in the UI) without requiring a separate "resolve identifier" API call.
+`linear issue ENG-123` first tries a direct UUID lookup. If that throws (because `ENG-123` is an identifier, not a UUID), it falls back to `searchIssues` with `first: 1`. This gives users the ergonomics of typing identifiers (what they see in the UI) without requiring a separate "resolve identifier" API call.
 
 ### 4. No SDK for status check
 
@@ -384,7 +384,7 @@ The CLI is bundled into one file with esbuild rather than distributed as raw sou
 
 ### 6. Config file over environment variables
 
-The API key lives in `~/.config/linear-cli/config.json` rather than an environment variable. This keeps the key out of shell history and environment listings, and the `init` command validates the key before persisting it. The config path follows the XDG Base Directory convention on macOS/Linux.
+The API key lives in `~/.config/linear/config.json` rather than an environment variable. This keeps the key out of shell history and environment listings, and the `init` command validates the key before persisting it. The config path follows the XDG Base Directory convention on macOS/Linux.
 
 ### 7. Eager pagination
 

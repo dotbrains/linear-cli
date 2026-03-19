@@ -1,6 +1,6 @@
-# linear-cli — CLI for the Linear API
+# linear — CLI for the Linear API
 
-![linear-cli](./assets/og-image.svg)
+![linear](./assets/og-image.svg)
 
 [![CI](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml)
 [![GitHub Package](https://img.shields.io/badge/npm-%40dotbrains%2Flinear--cli-CB3837?logo=npm)](https://github.com/dotbrains/linear-cli/packages)
@@ -19,27 +19,27 @@ Search issues, manage comments, list labels and users, and check platform status
 npm install -g @dotbrains/linear-cli
 
 # Set up your API key
-linear-cli init
+linear init
 
 # Search for issues
-linear-cli search "auth bug"
+linear search "auth bug"
 
 # Get a specific issue with comments
-linear-cli issue ENG-123
+linear issue ENG-123
 
 # List issues by label
-linear-cli issues --labels Bug
+linear issues --labels Bug
 
 # Add a comment
-linear-cli comment-add ENG-123 -b "Looks good to me"
+linear comment-add ENG-123 -b "Looks good to me"
 
 # Check Linear platform status
-linear-cli status
+linear status
 ```
 
 ## How It Works
 
-1. Reads your API key from `~/.config/linear-cli/config.json`.
+1. Reads your API key from `~/.config/linear/config.json`.
 2. Uses the official `@linear/sdk` to communicate with the Linear GraphQL API.
 3. Paginates automatically — all list commands fetch every page.
 4. Outputs raw JSON to stdout for easy piping into `jq`, scripts, or other tools.
@@ -80,41 +80,41 @@ npm link
 
 | Command | Description |
 |---|---|
-| `linear-cli init` | Set up linear-cli by configuring your API key |
-| `linear-cli search <term>` | Full-text search (Issues, Documents, or Projects) |
-| `linear-cli users` | List organization users |
-| `linear-cli labels` | List all issue labels |
-| `linear-cli issues --labels <names...>` | List issues matching one or more labels |
-| `linear-cli issue <id>` | Fetch a single issue by ID or identifier (e.g. ENG-123) |
-| `linear-cli comment-add <issueId> -b <body>` | Add a comment to an issue |
-| `linear-cli comment-edit <commentId> -b <body>` | Edit an existing comment |
-| `linear-cli comment-delete <commentId>` | Delete a comment |
-| `linear-cli comment-get <commentId>` | Get a comment by UUID |
-| `linear-cli comments-mine` | List comments by the authenticated user |
-| `linear-cli status` | Check Linear platform status |
+| `linear init` | Set up linear by configuring your API key |
+| `linear search <term>` | Full-text search (Issues, Documents, or Projects) |
+| `linear users` | List organization users |
+| `linear labels` | List all issue labels |
+| `linear issues --labels <names...>` | List issues matching one or more labels |
+| `linear issue <id>` | Fetch a single issue by ID or identifier (e.g. ENG-123) |
+| `linear comment-add <issueId> -b <body>` | Add a comment to an issue |
+| `linear comment-edit <commentId> -b <body>` | Edit an existing comment |
+| `linear comment-delete <commentId>` | Delete a comment |
+| `linear comment-get <commentId>` | Get a comment by UUID |
+| `linear comments-mine` | List comments by the authenticated user |
+| `linear status` | Check Linear platform status |
 
 ## Configuration
 
 ```sh
 # First-time setup
-linear-cli init
+linear init
 ```
 
-This prompts for your API key, validates it against the Linear API, and writes the config to `~/.config/linear-cli/config.json`.
+This prompts for your API key, validates it against the Linear API, and writes the config to `~/.config/linear/config.json`.
 
 Generate a personal API key at [Linear > Settings > Security](https://linear.app/settings/account/security).
 
-To reconfigure, run `linear-cli init --force`.
+To reconfigure, run `linear init --force`.
 
 ## Agent Skill
 
-This repo includes an agent skill at `.claude/skills/linear/SKILL.md` that is automatically discovered by [Warp](https://www.warp.dev/) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code). When working in this repo, the agent can use `linear-cli` whenever you ask about bugs, issues, or anything Linear-related.
+This repo includes an agent skill at `.claude/skills/linear/SKILL.md` that is automatically discovered by [Warp](https://www.warp.dev/) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code). When working in this repo, the agent can use `linear` whenever you ask about bugs, issues, or anything Linear-related.
 
 With the skill active, you can say things like:
 
 > Find every engineering-related bug in Linear that is unfinished. For each one, look at the problem and then — by analyzing the codebase and git history — figure out which engineers are best suited to addressing each issue. Then leave a comment with that info.
 
-The agent will use `linear-cli` to search for issues, inspect the codebase, and post comments — all autonomously.
+The agent will use `linear` to search for issues, inspect the codebase, and post comments — all autonomously.
 
 ## Specification
 

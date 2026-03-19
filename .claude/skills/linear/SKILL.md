@@ -4,4 +4,4 @@ description: Use this skill whenever the user wants to search Linear or is talki
 user-invocable: false
 ---
 
-You have access to a `linear-cli` command that allows you to interact with Linear (our company task / bug tracking platform). For more information, run: `linear-cli --help`
+You have access to a `linear` command that allows you to interact with Linear (our company task / bug tracking platform). For more information, run: `linear --help`
