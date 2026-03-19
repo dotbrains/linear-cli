@@ -19,12 +19,7 @@ Search issues, manage comments, list labels and users, and check platform status
 npm install -g @dotbrains/linear-cli
 
 # Set up your API key
-mkdir -p ~/.config/linear-cli
-cat > ~/.config/linear-cli/config.json << 'EOF'
-{
-  "apiKey": "lin_api_..."
-}
-EOF
+linear-cli init
 
 # Search for issues
 linear-cli search "auth bug"
@@ -83,6 +78,7 @@ npm link
 
 | Command | Description |
 |---|---|
+| `linear-cli init` | Set up linear-cli by configuring your API key |
 | `linear-cli search <term>` | Full-text search (Issues, Documents, or Projects) |
 | `linear-cli users` | List organization users |
 | `linear-cli labels` | List all issue labels |
@@ -97,15 +93,16 @@ npm link
 
 ## Configuration
 
-Config lives at `~/.config/linear-cli/config.json`:
-
-```json
-{
-  "apiKey": "lin_api_..."
-}
+```sh
+# First-time setup
+linear-cli init
 ```
 
+This prompts for your API key, validates it against the Linear API, and writes the config to `~/.config/linear-cli/config.json`.
+
 Generate a personal API key at [Linear > Settings > Security](https://linear.app/settings/account/security).
+
+To reconfigure, run `linear-cli init --force`.
 
 ## Claude Skill
 

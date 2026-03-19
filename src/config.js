@@ -15,17 +15,7 @@ function loadConfig() {
   if (_config) return _config;
   if (!fs.existsSync(CONFIG_PATH)) {
     console.error(`Error: config file not found at ${CONFIG_PATH}`);
-    console.error(
-      "Create it with:\n\n" +
-        "  mkdir -p ~/.config/linear-cli\n" +
-        '  cat > ~/.config/linear-cli/config.json << \'EOF\'\n' +
-        "  {\n" +
-        '    "apiKey": "lin_api_..."\n' +
-        "  }\n" +
-        "  EOF\n\n" +
-        "Generate a personal API key at:\n" +
-        "  https://linear.app/settings/account/security"
-    );
+    console.error("Run `linear-cli init` to set up your API key.");
     process.exit(1);
   }
   try {

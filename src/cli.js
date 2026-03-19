@@ -7,6 +7,7 @@ const { registerLabels } = require("./commands/labels");
 const { registerIssues } = require("./commands/issues");
 const { registerComments } = require("./commands/comments");
 const { registerStatus } = require("./commands/status");
+const { registerInit } = require("./commands/init");
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -19,19 +20,13 @@ program
   .description(
     "CLI for the Linear API.\n\n" +
       "Setup:\n" +
-      "  1. Generate a personal API key at https://linear.app/settings/account/security\n" +
-      "  2. Create the config file:\n\n" +
-      "    mkdir -p ~/.config/linear-cli\n" +
-      '    cat > ~/.config/linear-cli/config.json << \'EOF\'\n' +
-      "    {\n" +
-      '      "apiKey": "lin_api_..."\n' +
-      "    }\n" +
-      "    EOF\n\n" +
+      "  Run `linear-cli init` to configure your API key.\n\n" +
       "Output:\n" +
       "  All commands output JSON."
   );
 
 // Register commands
+registerInit(program);
 registerSearch(program);
 registerUsers(program);
 registerLabels(program);
