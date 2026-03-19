@@ -1,6 +1,6 @@
 {
   "name": "@dotbrains/linear-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "CLI for the Linear API — search issues, manage comments, check platform status",
   "license": "MIT",
   "author": "dotbrains",
@@ -17,10 +17,9 @@
   ],
   "main": "src/cli.js",
   "bin": {
-    "linear-cli": "./src/cli.js"
+    "linear-cli": "./dist/linear-cli"
   },
   "files": [
-    "src",
     "dist"
   ],
   "scripts": {
