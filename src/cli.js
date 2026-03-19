@@ -16,7 +16,7 @@ const { registerInit } = require("./commands/init");
 const program = new Command();
 program
   .name("linear-cli")
-  .version("1.0.0")
+  .version("1.1.0")
   .description(
     "CLI for the Linear API.\n\n" +
       "Setup:\n" +
