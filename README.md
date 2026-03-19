@@ -128,8 +128,6 @@ A marketing site lives in [`website/`](./website/). Built with Next.js, Tailwind
 cd website && npm install && npm run dev
 ```
 
-Deploys to [linear-cli.dotbrains.io](https://linear-cli.dotbrains.io) via Vercel.
-
 ## Dependencies
 
 - **[Node.js](https://nodejs.org/)** >= 18

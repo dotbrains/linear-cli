@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://linear-cli.dotbrains.io'),
+  metadataBase: new URL('https://github.com/dotbrains/linear-cli'),
   title: 'linear-cli — CLI for the Linear API',
   description: 'Search issues, manage comments, list labels and users, and check platform status — all from the command line. All commands output JSON.',
   openGraph: {
     title: 'linear-cli — CLI for the Linear API',
     description: 'Search issues, manage comments, list labels and users, and check platform status — all from the command line. All commands output JSON.',
-    url: 'https://linear-cli.dotbrains.io',
+    url: 'https://github.com/dotbrains/linear-cli',
     siteName: 'linear-cli',
     images: [
       {
