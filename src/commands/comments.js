@@ -9,8 +9,8 @@ function registerComments(program) {
         "The issue can be specified by UUID or identifier (e.g. ENG-123).\n" +
         "The comment body is markdown.\n\n" +
         "Examples:\n" +
-        '  $ linear-cli comment-add ENG-123 -b "Looks good to me"\n' +
-        '  $ linear-cli comment-add ENG-123 -b "## Summary\\nDone."'
+        '  $ linear comment-add ENG-123 -b "Looks good to me"\n' +
+        '  $ linear comment-add ENG-123 -b "## Summary\\nDone."'
     )
     .requiredOption("-b, --body <markdown>", "comment body in markdown")
     .action(async (issueId, opts) => {
@@ -24,7 +24,7 @@ function registerComments(program) {
     .description(
       "Edit an existing comment by its UUID.\n\n" +
         "Example:\n" +
-        '  $ linear-cli comment-edit abc-123 -b "Updated text"'
+        '  $ linear comment-edit abc-123 -b "Updated text"'
     )
     .requiredOption("-b, --body <markdown>", "new comment body in markdown")
     .action(async (commentId, opts) => {
@@ -38,7 +38,7 @@ function registerComments(program) {
     .description(
       "Delete a comment by its UUID.\n\n" +
         "Example:\n" +
-        "  $ linear-cli comment-delete abc-123"
+        "  $ linear comment-delete abc-123"
     )
     .action(async (commentId) => {
       const client = createClient();
@@ -51,7 +51,7 @@ function registerComments(program) {
     .description(
       "Get a comment by its UUID.\n\n" +
         "Example:\n" +
-        "  $ linear-cli comment-get abc-123"
+        "  $ linear comment-get abc-123"
     )
     .action(async (commentId) => {
       const client = createClient();
@@ -64,8 +64,8 @@ function registerComments(program) {
     .description(
       "List comments created by the authenticated user.\n\n" +
         "Example:\n" +
-        "  $ linear-cli comments-mine\n" +
-        "  $ linear-cli comments-mine --first 10"
+        "  $ linear comments-mine\n" +
+        "  $ linear comments-mine --first 10"
     )
     .option("--first <n>", "page size", "50")
     .action(async (opts) => {

@@ -17,7 +17,7 @@ function prompt(question) {
 function registerInit(program) {
   program
     .command("init")
-    .description("Set up linear-cli by configuring your API key")
+    .description("Set up linear by configuring your API key")
     .option("--force", "overwrite existing config file")
     .action(async (opts) => {
       if (fs.existsSync(CONFIG_PATH) && !opts.force) {

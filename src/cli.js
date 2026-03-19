@@ -16,12 +16,12 @@ const { version } = require("../package.json");
 
 const program = new Command();
 program
-  .name("linear-cli")
+  .name("linear")
   .version(version)
   .description(
     "CLI for the Linear API.\n\n" +
       "Setup:\n" +
-      "  Run `linear-cli init` to configure your API key.\n\n" +
+      "  Run `linear init` to configure your API key.\n\n" +
       "Output:\n" +
       "  All commands output JSON."
   );

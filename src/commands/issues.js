@@ -7,9 +7,9 @@ function registerIssues(program) {
     .description(
       "List issues matching the specified labels.\n\n" +
         "Examples:\n" +
-        "  $ linear-cli issues --labels Bug\n" +
-        "  $ linear-cli issues --labels Bug Feature\n" +
-        '  $ linear-cli issues --labels "Tech Debt" --first 100\n\n' +
+        "  $ linear issues --labels Bug\n" +
+        "  $ linear issues --labels Bug Feature\n" +
+        '  $ linear issues --labels "Tech Debt" --first 100\n\n' +
         "Label names are matched exactly (case-sensitive). " +
         "When multiple labels are given, issues matching any of them are returned."
     )
