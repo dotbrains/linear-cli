@@ -1,0 +1,42 @@
+{
+  "name": "@dotbrains/linear-cli",
+  "version": "1.0.0",
+  "description": "CLI for the Linear API — search issues, manage comments, check platform status",
+  "license": "MIT",
+  "author": "dotbrains",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dotbrains/linear-cli.git"
+  },
+  "keywords": [
+    "linear",
+    "cli",
+    "project-management",
+    "issues",
+    "api"
+  ],
+  "main": "src/cli.js",
+  "bin": {
+    "linear-cli": "./src/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "node src/cli.js",
+    "build": "esbuild ./src/cli.js --bundle --platform=node --target=node18 --outfile=dist/linear-cli && chmod +x dist/linear-cli",
+    "lint": "eslint src/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@linear/sdk": "^78.0.0",
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.4",
+    "eslint": "^10.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
