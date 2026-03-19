@@ -3,6 +3,7 @@
 ![linear-cli](./assets/og-image.svg)
 
 [![CI](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml)
+[![GitHub Package](https://img.shields.io/badge/npm-%40dotbrains%2Flinear--cli-CB3837?logo=npm)](https://github.com/dotbrains/linear-cli/packages)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
@@ -14,8 +15,8 @@ Search issues, manage comments, list labels and users, and check platform status
 ## Quick Start
 
 ```sh
-# Install dependencies
-npm install
+# Install (see Installation section for registry setup)
+npm install -g @dotbrains/linear-cli
 
 # Set up your API key
 mkdir -p ~/.config/linear-cli
@@ -47,6 +48,30 @@ linear-cli status
 2. Uses the official `@linear/sdk` to communicate with the Linear GraphQL API.
 3. Paginates automatically — all list commands fetch every page.
 4. Outputs raw JSON to stdout for easy piping into `jq`, scripts, or other tools.
+
+## Installation
+
+This package is published to [GitHub Packages](https://github.com/dotbrains/linear-cli/packages). Configure the `@dotbrains` scope first:
+
+```sh
+# .npmrc (project root or ~/.npmrc)
+@dotbrains:registry=https://npm.pkg.github.com
+```
+
+Then install globally:
+
+```sh
+npm install -g @dotbrains/linear-cli
+```
+
+Or from source:
+
+```sh
+git clone https://github.com/dotbrains/linear-cli.git
+cd linear-cli
+npm install
+npm link
+```
 
 ## Commands
 
