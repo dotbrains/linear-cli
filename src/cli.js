@@ -8,6 +8,7 @@ const { registerIssues } = require("./commands/issues");
 const { registerComments } = require("./commands/comments");
 const { registerStatus } = require("./commands/status");
 const { registerInit } = require("./commands/init");
+const { version } = require("../package.json");
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -16,7 +17,7 @@ const { registerInit } = require("./commands/init");
 const program = new Command();
 program
   .name("linear-cli")
-  .version("1.1.0")
+  .version(version)
   .description(
     "CLI for the Linear API.\n\n" +
       "Setup:\n" +
