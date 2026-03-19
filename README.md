@@ -46,12 +46,20 @@ linear-cli status
 
 ## Installation
 
-This package is published to [GitHub Packages](https://github.com/dotbrains/linear-cli/packages), not npmjs. You must configure the `@dotbrains` scope to point at the GitHub registry before installing:
+This package is published to [GitHub Packages](https://github.com/dotbrains/linear-cli/packages), not npmjs. One-time setup is required:
 
 ```sh
-# Add to ~/.npmrc (one-time setup)
-echo "@dotbrains:registry=https://npm.pkg.github.com" >> ~/.npmrc
+# 1. Point the @dotbrains scope at GitHub Packages
+npm config set @dotbrains:registry https://npm.pkg.github.com
+
+# 2. Authenticate with a GitHub personal access token (needs read:packages scope)
+npm config set //npm.pkg.github.com/:_authToken <YOUR_GITHUB_PAT>
 ```
+
+> **Tip:** If you have the [GitHub CLI](https://cli.github.com/) installed, you can use `gh auth token` instead of a PAT:
+> ```sh
+> npm config set //npm.pkg.github.com/:_authToken $(gh auth token)
+> ```
 
 Then install globally:
 
