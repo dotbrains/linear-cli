@@ -106,15 +106,15 @@ Generate a personal API key at [Linear > Settings > Security](https://linear.app
 
 To reconfigure, run `linear-cli init --force`.
 
-## Claude Skill
+## Agent Skill
 
-This repo includes a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill at `.claude/skills/linear.md` that lets Claude automatically use `linear-cli` whenever you ask about bugs, issues, or anything Linear-related.
+This repo includes an agent skill at `.claude/skills/linear/SKILL.md` that is automatically discovered by [Warp](https://www.warp.dev/) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code). When working in this repo, the agent can use `linear-cli` whenever you ask about bugs, issues, or anything Linear-related.
 
-With this skill installed, you can say things like:
+With the skill active, you can say things like:
 
 > Find every engineering-related bug in Linear that is unfinished. For each one, look at the problem and then — by analyzing the codebase and git history — figure out which engineers are best suited to addressing each issue. Then leave a comment with that info.
 
-Claude will use `linear-cli` to search for issues, inspect the codebase, and post comments — all autonomously.
+The agent will use `linear-cli` to search for issues, inspect the codebase, and post comments — all autonomously.
 
 ## Dependencies
 
