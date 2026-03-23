@@ -2,7 +2,7 @@
   "name": "@dotbrains/linear-cli",
   "version": "1.2.1",
   "description": "CLI for the Linear API — search issues, manage comments, check platform status",
-  "license": "MIT",
+  "license": "PolyForm-Shield-1.0.0",
   "author": "dotbrains",
   "repository": {
     "type": "git",

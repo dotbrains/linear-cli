@@ -239,7 +239,7 @@ export function MarketingFooter() {
             © {new Date().getFullYear()} linear-cli. All rights reserved.
           </p>
           <p className="text-cream/50 text-xs">
-            Open source software licensed under MIT
+            Licensed under PolyForm Shield 1.0.0
           </p>
         </div>
       </div>
