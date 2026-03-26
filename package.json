@@ -1,6 +1,6 @@
 {
   "name": "@dotbrains/linear-cli",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "CLI for the Linear API — search issues, manage comments, check platform status",
   "license": "PolyForm-Shield-1.0.0",
   "author": "dotbrains",
@@ -25,6 +25,7 @@
   "scripts": {
     "start": "node src/cli.js",
     "build": "esbuild ./src/cli.js --bundle --platform=node --target=node18 --outfile=dist/linear && chmod +x dist/linear",
+    "test": "node --test",
     "lint": "eslint src/",
     "prepublishOnly": "npm run build"
   },

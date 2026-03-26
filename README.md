@@ -143,7 +143,7 @@ npm link
 | `linear milestone-update <id>` | Update a milestone |
 | `linear milestone-delete <id>` | Delete a milestone |
 | `linear project-updates` | List project updates (optionally filter by `--project <id>`) |
-| `linear project-update <id>` | Fetch a single project update by ID |
+| `linear project-update-get <id>` | Fetch a single project update by ID |
 | `linear project-update-create` | Post a project update (`--project`, `--body` required) |
 | `linear webhooks` | List all webhooks |
 | `linear webhook <id>` | Fetch a single webhook by ID |
@@ -197,7 +197,13 @@ See [`SPEC.md`](./SPEC.md) for the full technical specification — every comman
 
 ## Testing
 
-This project does not include unit tests. Each command is a thin wrapper around [`@linear/sdk`](https://www.npmjs.com/package/@linear/sdk) — the CLI parses arguments, calls the SDK, and prints the response as JSON. There is no business logic to test independently; the SDK itself is tested and maintained by Linear. Correctness is verified by running commands against the live API during development.
+This project includes command-wiring tests that verify representative commands parse arguments correctly, call the expected SDK methods, and shape inputs as intended — without hitting the live Linear API.
+
+Run the test suite with:
+
+```sh
+npm test
+```
 
 ## Dependencies
 

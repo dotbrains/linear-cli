@@ -29,11 +29,11 @@ function registerProjectUpdates(program) {
     });
 
   program
-    .command("project-update <id>")
+    .command("project-update-get <id>")
     .description(
       "Fetch a single project update by ID.\n\n" +
         "Example:\n" +
-        "  $ linear project-update abc-123"
+        "  $ linear project-update-get abc-123"
     )
     .action(async (id) => {
       const client = createClient();
