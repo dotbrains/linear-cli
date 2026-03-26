@@ -21,6 +21,7 @@ const { registerMilestones } = require("./commands/milestones");
 const { registerProjectUpdates } = require("./commands/project-updates");
 const { registerWebhooks } = require("./commands/webhooks");
 const { registerInitiatives } = require("./commands/initiatives");
+const { registerTemplates } = require("./commands/templates");
 const { registerStatus } = require("./commands/status");
 const { version } = require("../package.json");
 
@@ -61,6 +62,7 @@ registerMilestones(program);
 registerProjectUpdates(program);
 registerWebhooks(program);
 registerInitiatives(program);
+registerTemplates(program);
 registerStatus(program);
 
 // ---------------------------------------------------------------------------

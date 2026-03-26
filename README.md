@@ -152,6 +152,20 @@ npm link
 | `linear webhook-delete <id>` | Delete a webhook |
 | `linear initiatives` | List all initiatives |
 | `linear initiative <id>` | Fetch a single initiative by ID |
+| `linear cycle-create` | Create a cycle (`--team`, `--starts-at`, `--ends-at` required) |
+| `linear cycle-update <id>` | Update a cycle |
+| `linear cycle-archive <id>` | Archive a cycle |
+| `linear project-create` | Create a project (`--team`, `--name` required) |
+| `linear project-update <id>` | Update a project |
+| `linear project-delete <id>` | Delete a project |
+| `linear roadmap-create` | Create a roadmap (`--name` required) |
+| `linear roadmap-update <id>` | Update a roadmap |
+| `linear roadmap-delete <id>` | Delete a roadmap |
+| `linear initiative-create` | Create an initiative (`--name` required) |
+| `linear initiative-update <id>` | Update an initiative |
+| `linear initiative-delete <id>` | Delete an initiative |
+| `linear templates` | List all templates |
+| `linear template <id>` | Fetch a single template by ID |
 | `linear status` | Check Linear platform status |
 
 ## Configuration
