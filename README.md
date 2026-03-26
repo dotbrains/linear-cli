@@ -80,33 +80,33 @@ npm link
 
 | Command | Description |
 |---|---|
-|| `linear init` | Set up linear by configuring your API key |
-|| `linear me` | Show the authenticated user's profile |
-|| `linear search <term>` | Full-text search (Issues, Documents, or Projects) |
-|| `linear users` | List organization users |
-|| `linear teams` | List all teams |
-|| `linear team <id>` | Fetch a single team by ID |
-|| `linear labels` | List all issue labels |
-|| `linear workflow-states` | List workflow states (optionally filter by `--team <id>`) |
-|| `linear issues` | List issues with optional filters (`--labels`, `--team`, `--assignee`, `--state`, `--priority`) |
-|| `linear issue <id>` | Fetch a single issue by ID or identifier (e.g. ENG-123) |
-|| `linear issue-create` | Create a new issue (`--team` and `--title` required) |
-|| `linear issue-update <id>` | Update an existing issue |
-|| `linear issue-delete <id>` | Delete an issue |
-|| `linear comment-add <issueId> -b <body>` | Add a comment to an issue |
-|| `linear comment-edit <commentId> -b <body>` | Edit an existing comment |
-|| `linear comment-delete <commentId>` | Delete a comment |
-|| `linear comment-get <commentId>` | Get a comment by UUID |
-|| `linear comments-mine` | List comments by the authenticated user |
-|| `linear projects` | List projects (optionally filter by `--team <id>`) |
-|| `linear project <id>` | Fetch a single project by ID |
-|| `linear cycles` | List cycles (optionally filter by `--team <id>`) |
-|| `linear cycle <id>` | Fetch a single cycle by ID |
-|| `linear roadmaps` | List all roadmaps |
-|| `linear notifications` | List notifications for the authenticated user |
-|| `linear notification-mark-read <id>` | Mark a notification as read |
-|| `linear notification-mark-unread <id>` | Mark a notification as unread |
-|| `linear status` | Check Linear platform status |
+| `linear init` | Set up linear by configuring your API key |
+| `linear me` | Show the authenticated user's profile |
+| `linear search <term>` | Full-text search (Issues, Documents, or Projects) |
+| `linear users` | List organization users |
+| `linear teams` | List all teams |
+| `linear team <id>` | Fetch a single team by ID |
+| `linear labels` | List all issue labels |
+| `linear workflow-states` | List workflow states (optionally filter by `--team <id>`) |
+| `linear issues` | List issues with optional filters (`--labels`, `--team`, `--assignee`, `--state`, `--priority`) |
+| `linear issue <id>` | Fetch a single issue by ID or identifier (e.g. ENG-123) |
+| `linear issue-create` | Create a new issue (`--team` and `--title` required) |
+| `linear issue-update <id>` | Update an existing issue |
+| `linear issue-delete <id>` | Delete an issue |
+| `linear comment-add <issueId> -b <body>` | Add a comment to an issue |
+| `linear comment-edit <commentId> -b <body>` | Edit an existing comment |
+| `linear comment-delete <commentId>` | Delete a comment |
+| `linear comment-get <commentId>` | Get a comment by UUID |
+| `linear comments-mine` | List comments by the authenticated user |
+| `linear projects` | List projects (optionally filter by `--team <id>`) |
+| `linear project <id>` | Fetch a single project by ID |
+| `linear cycles` | List cycles (optionally filter by `--team <id>`) |
+| `linear cycle <id>` | Fetch a single cycle by ID |
+| `linear roadmaps` | List all roadmaps |
+| `linear notifications` | List notifications for the authenticated user |
+| `linear notification-mark-read <id>` | Mark a notification as read |
+| `linear notification-mark-unread <id>` | Mark a notification as unread |
+| `linear status` | Check Linear platform status |
 
 ## Configuration
 
