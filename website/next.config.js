@@ -9,9 +9,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Explicitly set the root so the @/* alias resolves to src/ in this package,
-  // not the monorepo root (which Next.js picks up due to the parent package-lock.json).
-  outputFileTracingRoot: path.join(__dirname, '../../'),
+  // Explicitly set the webpack alias so @/* resolves to src/ in this package,
+  // not the monorepo root (which Next.js may pick up due to the parent package-lock.json).
   webpack: (config) => {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
