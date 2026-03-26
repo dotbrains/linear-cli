@@ -48,6 +48,45 @@ function registerNotifications(program) {
       const result = await client.updateNotification(id, { readAt: null });
       printJson(await result.notification);
     });
+
+  program
+    .command("notifications-mark-read-all")
+    .description(
+      "Mark all notifications as read.\n\n" +
+        "Example:\n" +
+        "  $ linear notifications-mark-read-all"
+    )
+    .action(async () => {
+      const client = createClient();
+      const result = await client.notificationMarkReadAll({});
+      printJson({ success: result.success });
+    });
+
+  program
+    .command("notifications-mark-unread-all")
+    .description(
+      "Mark all notifications as unread.\n\n" +
+        "Example:\n" +
+        "  $ linear notifications-mark-unread-all"
+    )
+    .action(async () => {
+      const client = createClient();
+      const result = await client.notificationMarkUnreadAll({});
+      printJson({ success: result.success });
+    });
+
+  program
+    .command("notifications-archive-all")
+    .description(
+      "Archive all notifications.\n\n" +
+        "Example:\n" +
+        "  $ linear notifications-archive-all"
+    )
+    .action(async () => {
+      const client = createClient();
+      const result = await client.notificationArchiveAll({});
+      printJson({ success: result.success });
+    });
 }
 
 module.exports = { registerNotifications };

@@ -16,6 +16,19 @@ function registerUsers(program) {
       }
       printJson(allNodes);
     });
+
+  program
+    .command("user <id>")
+    .description(
+      "Fetch a single user by ID.\n\n" +
+        "Example:\n" +
+        "  $ linear user abc-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      const user = await client.user(id);
+      printJson(user);
+    });
 }
 
 module.exports = { registerUsers };

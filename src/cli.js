@@ -14,6 +14,9 @@ const { registerProjects } = require("./commands/projects");
 const { registerCycles } = require("./commands/cycles");
 const { registerRoadmaps } = require("./commands/roadmaps");
 const { registerNotifications } = require("./commands/notifications");
+const { registerDocuments } = require("./commands/documents");
+const { registerAttachments } = require("./commands/attachments");
+const { registerRelations } = require("./commands/relations");
 const { registerStatus } = require("./commands/status");
 const { version } = require("../package.json");
 
@@ -47,6 +50,9 @@ registerProjects(program);
 registerCycles(program);
 registerRoadmaps(program);
 registerNotifications(program);
+registerDocuments(program);
+registerAttachments(program);
+registerRelations(program);
 registerStatus(program);
 
 // ---------------------------------------------------------------------------

@@ -103,9 +103,33 @@ npm link
 | `linear cycles` | List cycles (optionally filter by `--team <id>`) |
 | `linear cycle <id>` | Fetch a single cycle by ID |
 | `linear roadmaps` | List all roadmaps |
+| `linear roadmap <id>` | Fetch a single roadmap by ID |
 | `linear notifications` | List notifications for the authenticated user |
 | `linear notification-mark-read <id>` | Mark a notification as read |
 | `linear notification-mark-unread <id>` | Mark a notification as unread |
+| `linear notifications-mark-read-all` | Mark all notifications as read |
+| `linear notifications-mark-unread-all` | Mark all notifications as unread |
+| `linear notifications-archive-all` | Archive all notifications |
+| `linear issue-archive <id>` | Archive an issue |
+| `linear issue-unarchive <id>` | Unarchive an issue |
+| `linear issue-relations <issueId>` | List relations for an issue |
+| `linear issue-relation <id>` | Fetch a single issue relation by ID |
+| `linear issue-relation-add` | Add a relation between two issues (`--issue`, `--related-issue`, `--type`) |
+| `linear issue-relation-delete <id>` | Delete an issue relation |
+| `linear comment-resolve <commentId>` | Resolve a comment |
+| `linear comment-unresolve <commentId>` | Unresolve a comment |
+| `linear user <id>` | Fetch a single user by ID |
+| `linear documents` | List documents |
+| `linear document <id>` | Fetch a single document by ID |
+| `linear document-create` | Create a document (`--title`, `--project` required) |
+| `linear document-update <id>` | Update a document |
+| `linear document-delete <id>` | Delete a document |
+| `linear attachments <issueId>` | List attachments for an issue |
+| `linear attachment <id>` | Fetch a single attachment by ID |
+| `linear attachment-link-url <issueId>` | Link an external URL to an issue (`--url` required) |
+| `linear attachment-link-github-pr <issueId>` | Link a GitHub PR to an issue (`--url` required) |
+| `linear attachment-link-github-issue <issueId>` | Link a GitHub Issue to a Linear issue (`--url` required) |
+| `linear attachment-delete <id>` | Delete an attachment |
 | `linear status` | Check Linear platform status |
 
 ## Configuration

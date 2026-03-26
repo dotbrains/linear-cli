@@ -137,6 +137,54 @@ function registerIssues(program) {
     });
 
   program
+    .command("issue-archive <id>")
+    .description(
+      "Archive an issue by ID or identifier.\n\n" +
+        "Example:\n" +
+        "  $ linear issue-archive ENG-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      let issue;
+      try {
+        issue = await client.issue(id);
+      } catch {
+        const results = await client.searchIssues(id, { first: 1, includeArchived: true });
+        if (!results.nodes.length) {
+          console.error(`Issue not found: ${id}`);
+          process.exit(1);
+        }
+        issue = results.nodes[0];
+      }
+      const result = await client.archiveIssue(issue.id);
+      printJson({ success: result.success });
+    });
+
+  program
+    .command("issue-unarchive <id>")
+    .description(
+      "Unarchive an issue by ID or identifier.\n\n" +
+        "Example:\n" +
+        "  $ linear issue-unarchive ENG-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      let issue;
+      try {
+        issue = await client.issue(id);
+      } catch {
+        const results = await client.searchIssues(id, { first: 1, includeArchived: true });
+        if (!results.nodes.length) {
+          console.error(`Issue not found: ${id}`);
+          process.exit(1);
+        }
+        issue = results.nodes[0];
+      }
+      const result = await client.unarchiveIssue(issue.id);
+      printJson({ success: result.success });
+    });
+
+  program
     .command("issue <id>")
     .description("Fetch a single issue by ID or identifier (e.g. ENG-123)")
     .action(async (id) => {

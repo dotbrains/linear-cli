@@ -20,6 +20,19 @@ function registerRoadmaps(program) {
       }
       printJson(allNodes);
     });
+
+  program
+    .command("roadmap <id>")
+    .description(
+      "Fetch a single roadmap by ID.\n\n" +
+        "Example:\n" +
+        "  $ linear roadmap abc-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      const roadmap = await client.roadmap(id);
+      printJson(roadmap);
+    });
 }
 
 module.exports = { registerRoadmaps };

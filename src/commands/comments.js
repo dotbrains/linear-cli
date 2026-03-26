@@ -60,6 +60,32 @@ function registerComments(program) {
     });
 
   program
+    .command("comment-resolve <commentId>")
+    .description(
+      "Resolve a comment by its UUID.\n\n" +
+        "Example:\n" +
+        "  $ linear comment-resolve abc-123"
+    )
+    .action(async (commentId) => {
+      const client = createClient();
+      const result = await client.commentResolve(commentId);
+      printJson(await result.comment);
+    });
+
+  program
+    .command("comment-unresolve <commentId>")
+    .description(
+      "Unresolve a comment by its UUID.\n\n" +
+        "Example:\n" +
+        "  $ linear comment-unresolve abc-123"
+    )
+    .action(async (commentId) => {
+      const client = createClient();
+      const result = await client.commentUnresolve(commentId);
+      printJson(await result.comment);
+    });
+
+  program
     .command("comments-mine")
     .description(
       "List comments created by the authenticated user.\n\n" +

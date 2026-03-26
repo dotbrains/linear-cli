@@ -1,6 +1,6 @@
 {
   "name": "@dotbrains/linear-cli",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "CLI for the Linear API — search issues, manage comments, check platform status",
   "license": "PolyForm-Shield-1.0.0",
   "author": "dotbrains",

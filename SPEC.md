@@ -345,6 +345,252 @@ Steps:
 2. Calls `client.updateNotification(id, { readAt: null })`.
 3. Prints the updated notification as JSON.
 
+### `linear roadmap <id>`
+
+Fetch a single roadmap by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.roadmap(id)`.
+3. Prints the roadmap as JSON.
+
+### `linear user <id>`
+
+Fetch a single user by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.user(id)`.
+3. Prints the user as JSON.
+
+### `linear issue-archive <id>`
+
+Archive an issue by UUID or identifier.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves the issue UUID (with identifier fallback).
+3. Calls `client.archiveIssue(uuid)`.
+4. Prints `{ "success": true/false }` as JSON.
+
+### `linear issue-unarchive <id>`
+
+Unarchive an issue by UUID or identifier.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves the issue UUID (with identifier fallback, including archived issues).
+3. Calls `client.unarchiveIssue(uuid)`.
+4. Prints `{ "success": true/false }` as JSON.
+
+### `linear issue-relations <issueId>`
+
+List relations for an issue.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves the issue UUID.
+3. Queries `client.issueRelations()` filtered by the issue ID.
+4. Follows pagination and prints all relations as JSON.
+
+### `linear issue-relation <id>`
+
+Fetch a single issue relation by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.issueRelation(id)`.
+3. Prints the relation as JSON.
+
+### `linear issue-relation-add`
+
+Add a relation between two issues.
+
+Options:
+- `--issue <id>` — issue ID or identifier (required).
+- `--related-issue <id>` — related issue ID or identifier (required).
+- `--type <type>` — relation type: `blocks`, `duplicate`, or `related` (required).
+
+Steps:
+1. Reads the API key from config.
+2. Resolves both issue UUIDs (with identifier fallback).
+3. Calls `client.createIssueRelation({ issueId, relatedIssueId, type })`.
+4. Prints the created relation as JSON.
+
+### `linear issue-relation-delete <id>`
+
+Delete an issue relation by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.deleteIssueRelation(id)`.
+3. Prints `{ "success": true/false }` as JSON.
+
+### `linear comment-resolve <commentId>`
+
+Resolve a comment by its UUID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.commentResolve(commentId)`.
+3. Prints the updated comment as JSON.
+
+### `linear comment-unresolve <commentId>`
+
+Unresolve a comment by its UUID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.commentUnresolve(commentId)`.
+3. Prints the updated comment as JSON.
+
+### `linear notifications-mark-read-all`
+
+Mark all notifications as read.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.notificationMarkReadAll({})`.
+3. Prints `{ "success": true/false }` as JSON.
+
+### `linear notifications-mark-unread-all`
+
+Mark all notifications as unread.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.notificationMarkUnreadAll({})`.
+3. Prints `{ "success": true/false }` as JSON.
+
+### `linear notifications-archive-all`
+
+Archive all notifications.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.notificationArchiveAll({})`.
+3. Prints `{ "success": true/false }` as JSON.
+
+### `linear documents`
+
+List documents.
+
+Options:
+- `--first <n>` — page size (default: 50).
+
+Steps:
+1. Reads the API key from config.
+2. Fetches documents with `client.documents()`.
+3. Follows pagination and prints all documents as JSON.
+
+### `linear document <id>`
+
+Fetch a single document by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.document(id)`.
+3. Prints the document as JSON.
+
+### `linear document-create`
+
+Create a new document.
+
+Options:
+- `--title <text>` — document title (required).
+- `--project <id>` — project ID to associate the document with (required).
+- `--content <markdown>` — document content.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.createDocument({ title, projectId, content })`.
+3. Prints the created document as JSON.
+
+### `linear document-update <id>`
+
+Update a document.
+
+Options (at least one required):
+- `--title <text>`, `--content <markdown>`.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.updateDocument(id, input)`.
+3. Prints the updated document as JSON.
+
+### `linear document-delete <id>`
+
+Delete a document by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.deleteDocument(id)`.
+3. Prints `{ "success": true/false }` as JSON.
+
+### `linear attachments <issueId>`
+
+List attachments for an issue.
+
+Steps:
+1. Reads the API key from config.
+2. Queries `client.attachments()` filtered by issue ID.
+3. Follows pagination and prints all attachments as JSON.
+
+### `linear attachment <id>`
+
+Fetch a single attachment by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.attachment(id)`.
+3. Prints the attachment as JSON.
+
+### `linear attachment-link-url <issueId>`
+
+Link an external URL to an issue.
+
+Options:
+- `--url <url>` — URL to attach (required).
+- `--title <text>` — display title.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.attachmentLinkURL({ issueId, url, title })`.
+3. Prints the created attachment as JSON.
+
+### `linear attachment-link-github-pr <issueId>`
+
+Link a GitHub Pull Request to an issue.
+
+Options:
+- `--url <url>` — GitHub PR URL (required).
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.attachmentLinkGitHubPR({ issueId, url })`.
+3. Prints the created attachment as JSON.
+
+### `linear attachment-link-github-issue <issueId>`
+
+Link a GitHub Issue to a Linear issue.
+
+Options:
+- `--url <url>` — GitHub Issue URL (required).
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.attachmentLinkGitHubIssue({ issueId, url })`.
+3. Prints the created attachment as JSON.
+
+### `linear attachment-delete <id>`
+
+Delete an attachment by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.deleteAttachment(id)`.
+3. Prints `{ "success": true/false }` as JSON.
+
 ### `linear status`
 
 Check Linear platform status.
@@ -467,7 +713,10 @@ linear-cli/
 │       ├── projects.js        # `projects` + `project` commands
 │       ├── cycles.js          # `cycles` + `cycle` commands
 │       ├── roadmaps.js        # `roadmaps` command
-│       ├── notifications.js   # `notifications`, `notification-mark-read`, `notification-mark-unread`
+│       ├── notifications.js   # `notifications`, `notification-mark-read/unread`, `notifications-mark-read/unread-all`, `notifications-archive-all`
+│       ├── documents.js       # `documents`, `document`, `document-create`, `document-update`, `document-delete`
+│       ├── attachments.js     # `attachments`, `attachment`, `attachment-link-url/github-pr/github-issue`, `attachment-delete`
+│       ├── relations.js       # `issue-relations`, `issue-relation`, `issue-relation-add`, `issue-relation-delete`
 │       └── status.js          # `status` command — Linear platform status check
 ├── assets/
 │   └── og-image.svg           # Project banner image
