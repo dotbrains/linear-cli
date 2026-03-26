@@ -24,6 +24,7 @@ jobs:
           scope: '@dotbrains'
 
       - run: npm ci
+      - run: npm test
       - run: npm run build
       - run: npm publish
         env:

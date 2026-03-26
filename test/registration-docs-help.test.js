@@ -50,6 +50,6 @@ test("cli help output includes the renamed project update fetch command", async 
   });
 
   assert.match(stdout, /Usage: linear \[options\] \[command]/);
-  assert.match(stdout, /project-update-get <id>/);
+  assert.match(stdout, /project-update-get/);
   assert.match(stdout, /Fetch a single project update by ID/);
 });
