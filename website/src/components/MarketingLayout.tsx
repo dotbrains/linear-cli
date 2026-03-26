@@ -21,8 +21,8 @@ export function MarketingNav({ transparent = false }: MarketingNavProps) {
     <nav className={`fixed left-0 right-0 top-0 z-50 w-full px-4 sm:px-6 py-4 backdrop-blur-xl transition-colors ${transparent ? 'bg-dark-slate/80' : 'bg-dark-slate border-b border-linear-indigo/30'}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2 sm:gap-3">
-          <Image src="/favicon.svg" alt="linear-cli" width={32} height={32} className="w-7 h-7 sm:w-8 sm:h-8" />
-          <span className="text-lg sm:text-xl font-bold text-cream">linear-cli</span>
+          <Image src="/favicon.svg" alt="linear" width={32} height={32} className="w-7 h-7 sm:w-8 sm:h-8" />
+          <span className="text-lg sm:text-xl font-bold text-cream">linear</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -140,11 +140,11 @@ export function MarketingFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src="/favicon.svg" alt="linear-cli" width={32} height={32} className="w-8 h-8" />
-              <span className="text-xl font-bold text-cream">linear-cli</span>
+              <Image src="/favicon.svg" alt="linear" width={32} height={32} className="w-8 h-8" />
+          <span className="text-xl font-bold text-cream">linear</span>
             </div>
             <p className="text-cream/60 text-sm leading-relaxed mb-4">
-              CLI for the Linear API — search issues, manage comments, check status. Open source and free to use.
+              CLI for the full Linear API — issues, projects, cycles, roadmaps, webhooks, notifications, and more. Open source.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -236,7 +236,7 @@ export function MarketingFooter() {
         </div>
         <div className="pt-8 border-t border-linear-indigo/30 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-cream/60 text-sm">
-            © {new Date().getFullYear()} linear-cli. All rights reserved.
+            © {new Date().getFullYear()} linear. All rights reserved.
           </p>
           <p className="text-cream/50 text-xs">
             Licensed under PolyForm Shield 1.0.0

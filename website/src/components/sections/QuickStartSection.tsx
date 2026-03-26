@@ -12,7 +12,7 @@ export function QuickStartSection() {
             Quick Start
           </h2>
           <p className="text-slate-gray text-base sm:text-lg lg:text-xl max-w-3xl mx-auto">
-            Install linear-cli and query Linear in under a minute
+            Install and run your first Linear query in under a minute
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -38,20 +38,26 @@ npm install -g @dotbrains/linear-cli`}
           <div className="bg-dark-gray/50 rounded-xl p-6 sm:p-8 border border-linear-purple/20 min-w-0">
             <h3 className="text-xl sm:text-2xl font-bold text-cream mb-4 sm:mb-6">2. Configure & Use</h3>
             <CodeBlock
-              code={`# Set up your Linear API key
-linear-cli init
+            code={`# Set up your Linear API key
+linear init
 
 # Search for issues
-linear-cli search "auth bug"
+linear search "auth bug"
 
-# Get a specific issue
-linear-cli issue ENG-123
+# Get a specific issue with comments
+linear issue ENG-123
+
+# Create an issue
+linear issue-create --team <teamId> --title "Fix login bug" --priority 1
 
 # Add a comment
-linear-cli comment-add ENG-123 -b "On it"
+linear comment-add ENG-123 -b "On it"
+
+# List your notifications
+linear notifications
 
 # Check Linear platform status
-linear-cli status`}
+linear status`}
               language="bash"
             />
             <div className="mt-6 bg-linear-indigo/10 border border-linear-indigo/30 rounded-lg p-4 sm:p-5">

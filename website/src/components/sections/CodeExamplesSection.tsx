@@ -8,7 +8,7 @@ export function CodeExamplesSection() {
 
   const examples = {
     search: `# Full-text search across issues, documents, and projects
-$ linear-cli search "auth bug"
+$ linear search "auth bug"
 → [
     { "identifier": "ENG-123", "title": "Fix auth race condition", ... },
     { "identifier": "ENG-456", "title": "Auth token expiry bug", ... },
@@ -16,29 +16,29 @@ $ linear-cli search "auth bug"
   ]
 
 # Search for documents
-$ linear-cli search "onboarding" --type Documents`,
+$ linear search "onboarding" --type Documents`,
     issues: `# Fetch a single issue by identifier
-$ linear-cli issue ENG-123
+$ linear issue ENG-123
 → { "identifier": "ENG-123", "title": "Fix auth race condition",
      "priority": 1, "state": "In Progress", "comments": [...] }
 
 # List issues by label
-$ linear-cli issues --labels Bug
-$ linear-cli issues --labels Bug Feature --first 50`,
+$ linear issues --labels Bug
+$ linear issues --labels Bug Feature --first 50`,
     comments: `# Add a comment to an issue
-$ linear-cli comment-add ENG-123 -b "Looks good to me"
+$ linear comment-add ENG-123 -b "Looks good to me"
 ✓ Comment created
 
 # Edit an existing comment
-$ linear-cli comment-edit <commentId> -b "Updated: LGTM with nits"
+$ linear comment-edit <commentId> -b "Updated: LGTM with nits"
 
 # List your own comments
-$ linear-cli comments-mine --first 10
+$ linear comments-mine --first 10
 
 # Delete a comment
-$ linear-cli comment-delete <commentId>`,
+$ linear comment-delete <commentId>`,
     labels: `# List all issue labels in the organization
-$ linear-cli labels
+$ linear labels
 → [
     { "id": "abc-123", "name": "Bug", "color": "#eb5757" },
     { "id": "def-456", "name": "Feature", "color": "#4ea7fc" },
@@ -46,20 +46,20 @@ $ linear-cli labels
   ]
 
 # List all organization users
-$ linear-cli users
+$ linear users
 → [
     { "id": "usr-123", "name": "Alice", "email": "alice@co.com" },
     ...
   ]`,
     agent: `# With the Warp/Claude skill installed, just ask:
 > "Find all unfinished bugs in Linear and list them"
-→ Agent runs: linear-cli search "bug"
-→ Agent runs: linear-cli issues --labels Bug
+→ Agent runs: linear search "bug"
+→ Agent runs: linear issues --labels Bug
 → Agent summarizes results
 
 # Or automate with scripts:
-$ linear-cli issues --labels Bug | jq '.[].identifier' | \\
-  xargs -I {} linear-cli comment-add {} -b "Triaged by bot"`,
+$ linear issues --labels Bug | jq '.[].identifier' | \\
+  xargs -I {} linear comment-add {} -b "Triaged by bot"`,
   };
 
   const tabs = [

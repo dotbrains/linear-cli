@@ -7,7 +7,7 @@ export function UseCasesSection() {
     {
       icon: <Cpu className="w-6 h-6" />,
       title: 'Agent Workflows',
-      description: 'Let Warp or Claude autonomously search, triage, and comment on issues. The included skill teaches agents how to use linear-cli.',
+      description: 'Let Warp or Claude autonomously search, triage, update, and comment on issues. The included skill gives agents full Linear API access.',
     },
     {
       icon: <Search className="w-6 h-6" />,
@@ -44,7 +44,7 @@ export function UseCasesSection() {
             Use Cases
           </h2>
           <p className="text-cream/70 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto">
-            From agent automation to CI pipelines — linear-cli fits into any workflow
+            From agent automation to CI pipelines — linear fits into any workflow
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">

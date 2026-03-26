@@ -30,7 +30,7 @@ export function HeroSection({ onLearnMore }: HeroSectionProps) {
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-cream/70 mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto px-4">
-            Search issues, manage comments, list labels and users, and check platform status — all from the terminal. All commands output JSON.
+            Full Linear API access from the terminal — search, create and update issues, manage projects, cycles, roadmaps, webhooks, notifications, documents, and more. Every command outputs JSON.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <a
@@ -56,7 +56,7 @@ export function HeroSection({ onLearnMore }: HeroSectionProps) {
         <div className="mt-12 sm:mt-16 md:mt-24 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto px-4">
           <div className="bg-dark-gray/50 backdrop-blur-sm border border-linear-indigo/30 rounded-xl p-4 sm:p-6 text-center">
             <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-2">
-              12
+              80+
             </div>
             <div className="text-cream/60 text-sm sm:text-base md:text-lg">CLI Commands</div>
           </div>

@@ -7,20 +7,20 @@ export function HowItWorksSection() {
     {
       icon: <Download className="w-8 h-8" />,
       step: '1',
-      title: 'Install linear-cli',
+      title: 'Install linear',
       description: 'Install @dotbrains/linear-cli from GitHub Packages. One-time registry and auth token setup, then a single npm install.',
     },
     {
       icon: <Key className="w-8 h-8" />,
       step: '2',
       title: 'Configure Your API Key',
-      description: 'Run linear-cli init to interactively set up your Linear API key. It validates the key against the API before saving.',
+      description: 'Run `linear init` to interactively set up your Linear API key. It validates the key against the API before saving.',
     },
     {
       icon: <Terminal className="w-8 h-8" />,
       step: '3',
       title: 'Start Using It',
-      description: 'Search issues, manage comments, list labels — all from the command line. Pipe JSON output into jq, scripts, or AI agents.',
+      description: 'Search issues, manage projects, post comments, track notifications, manage webhooks — all from the command line. Pipe JSON into jq, scripts, or AI agents.',
     },
   ];
 

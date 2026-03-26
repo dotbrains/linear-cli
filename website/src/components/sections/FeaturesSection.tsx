@@ -1,6 +1,6 @@
 'use client';
 
-import { Search, MessageSquare, Tag, Users, Activity, Settings, Cpu, FileJson, Key } from 'lucide-react';
+import { Search, MessageSquare, Tag, Users, Activity, Settings, Cpu, FileJson, Key, GitBranch, Bell, Webhook, FolderKanban } from 'lucide-react';
 
 export function FeaturesSection() {
   const features = [
@@ -11,23 +11,43 @@ export function FeaturesSection() {
     },
     {
       icon: <FileJson className="w-6 h-6" />,
-      title: 'Issue Management',
-      description: 'Fetch individual issues by ID or identifier (e.g. ENG-123), list issues by label, and get full issue details with comments.',
+      title: 'Issue CRUD',
+      description: 'Create, update, delete, archive, and fetch issues by ID or identifier. Filter by team, assignee, state, priority, or label.',
+    },
+    {
+      icon: <FolderKanban className="w-6 h-6" />,
+      title: 'Projects, Cycles & Roadmaps',
+      description: 'Full CRUD for projects, cycles, roadmaps, and initiatives. List milestones, post project updates, and manage planning entities.',
     },
     {
       icon: <MessageSquare className="w-6 h-6" />,
-      title: 'Comment CRUD',
-      description: 'Add, edit, delete, and retrieve comments. List all your own comments. Full comment lifecycle from the terminal.',
+      title: 'Comments',
+      description: 'Add, edit, delete, resolve, and unresolve comments. List your own comments. Full comment lifecycle from the terminal.',
+    },
+    {
+      icon: <GitBranch className="w-6 h-6" />,
+      title: 'Attachments & Relations',
+      description: 'Link GitHub PRs, issues, and external URLs to Linear issues. Create and delete issue relations (blocks, duplicate, related).',
     },
     {
       icon: <Tag className="w-6 h-6" />,
-      title: 'Labels & Filtering',
-      description: 'List all organization labels and filter issues by one or more labels. Case-sensitive matching with multi-label support.',
+      title: 'Labels & Workflow States',
+      description: 'List, create, update, and delete labels. List workflow states per team. Complete metadata management from the CLI.',
+    },
+    {
+      icon: <Bell className="w-6 h-6" />,
+      title: 'Notifications',
+      description: 'List notifications, mark individual ones read or unread, and bulk-archive or bulk-mark all notifications in one command.',
+    },
+    {
+      icon: <Webhook className="w-6 h-6" />,
+      title: 'Webhooks',
+      description: 'List, create, update, and delete webhooks. Full webhook lifecycle management without leaving the terminal.',
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: 'User Listing',
-      description: 'List all organization users with their IDs and display names. Useful for scripting assignments and lookups.',
+      title: 'Teams & Users',
+      description: 'List all teams, fetch a single team, list all users or look up a specific user. Essential for scripting assignments.',
     },
     {
       icon: <Activity className="w-6 h-6" />,
@@ -42,7 +62,7 @@ export function FeaturesSection() {
     {
       icon: <Cpu className="w-6 h-6" />,
       title: 'Agent Skill',
-      description: 'Includes a Warp and Claude Code skill. Agents automatically use linear-cli when you ask about bugs or issues.',
+      description: 'Includes a Warp and Claude Code skill. Agents automatically use linear when you ask about bugs or issues.',
     },
     {
       icon: <Settings className="w-6 h-6" />,
@@ -59,7 +79,7 @@ export function FeaturesSection() {
             Everything You Need from Linear
           </h2>
           <p className="text-cream/70 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto">
-            12 commands covering search, issues, comments, labels, users, and platform status
+            80+ commands covering issues, projects, cycles, roadmaps, teams, documents, webhooks, notifications, and more
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
