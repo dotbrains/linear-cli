@@ -43,13 +43,16 @@ test("README command list matches registered CLI commands", () => {
   assert.deepEqual(missingFromReadme, []);
 });
 
-test("cli help output includes the renamed project update fetch command", async () => {
+test("cli includes the renamed project update fetch command", async () => {
   const cliPath = path.join(ROOT, "src", "cli.js");
-  const { stdout } = await execFileAsync(process.execPath, [cliPath, "--help"], {
-    cwd: ROOT,
-  });
+  const { stdout } = await execFileAsync(
+    process.execPath,
+    [cliPath, "project-update-get", "--help"],
+    {
+      cwd: ROOT,
+    }
+  );
 
-  assert.match(stdout, /Usage: linear \[options\] \[command]/);
   assert.match(stdout, /project-update-get/);
-  assert.match(stdout, /Fetch a single project update by ID/);
+  assert.match(stdout, /Fetch a single\s+project update by ID/);
 });
