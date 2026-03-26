@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/dotbrains/linear-cli/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/dotbrains/linear-cli?display_name=tag)](https://github.com/dotbrains/linear-cli/releases/latest)
+[![Release Pipeline](https://github.com/dotbrains/linear-cli/actions/workflows/publish.yml/badge.svg)](https://github.com/dotbrains/linear-cli/actions/workflows/publish.yml)
 [![GitHub Package](https://img.shields.io/badge/npm-%40dotbrains%2Flinear--cli-CB3837?logo=npm)](https://github.com/dotbrains/linear-cli/packages)
 [![License: PolyForm Shield 1.0.0](https://img.shields.io/badge/License-PolyForm%20Shield%201.0.0-blue.svg)](https://polyformproject.org/licenses/shield/1.0.0/)
 
