@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const CONFIG_PATH = path.join(os.homedir(), ".config", "linear-cli", "config.json");
+const CONFIG_PATH = path.join(os.homedir(), ".config", "linear", "config.json");
 
 // ---------------------------------------------------------------------------
 // Config

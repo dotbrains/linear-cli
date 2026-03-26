@@ -10,7 +10,7 @@
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Linear](https://img.shields.io/badge/-Linear-5E6AD2?style=flat-square&logo=linear&logoColor=white)
 
-A CLI for searching issues, managing comments, listing labels and users, and checking platform status via the Linear GraphQL API. All commands output JSON. Built on [`@linear/sdk`](https://www.npmjs.com/package/@linear/sdk) and [Commander](https://www.npmjs.com/package/commander).
+A CLI for the Linear API — search issues, create and update issues, manage comments, list teams, projects, cycles, roadmaps, workflow states, and notifications. All commands output JSON. Built on [`@linear/sdk`](https://www.npmjs.com/package/@linear/sdk) and [Commander](https://www.npmjs.com/package/commander).
 
 ## Problem
 
@@ -19,6 +19,10 @@ Linear has a rich GraphQL API but no official CLI. When working in the terminal 
 `linear` provides:
 
 - **Full-text search** — search issues, documents, or projects from the command line.
+- **Issue management** — create, update, delete, and fetch issues with rich filtering by team, assignee, state, priority, and label.
+- **Teams & workflow states** — list all teams and their workflow states.
+- **Projects, cycles & roadmaps** — list and fetch planning entities.
+- **Notifications** — list and mark notifications read/unread.
 - **Automatic pagination** — all list commands fetch every page, so you always get the full result set.
 - **JSON output** — every command writes JSON to stdout, making it trivial to pipe into `jq`, scripts, or other tools.
 - **Comment management** — add, edit, delete, and list comments without leaving the terminal.
@@ -55,6 +59,15 @@ Steps:
 4. Creates the config directory (`~/.config/linear/`) if it doesn't exist.
 5. Writes the config file with the validated key.
 
+### `linear me`
+
+Print the authenticated user's profile.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves `client.viewer`.
+3. Prints the viewer as JSON.
+
 ### `linear search <term>`
 
 Full-text search across Linear entities.
@@ -78,6 +91,25 @@ Steps:
 3. Follows pagination (`fetchNext()`) until all users are collected.
 4. Prints all users as JSON.
 
+### `linear teams`
+
+List all teams in the organization.
+
+Steps:
+1. Reads the API key from config.
+2. Fetches teams with `client.teams()`, page size 100.
+3. Follows pagination until all teams are collected.
+4. Prints all teams as JSON.
+
+### `linear team <id>`
+
+Fetch a single team by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.team(id)`.
+3. Prints the team as JSON.
+
 ### `linear labels`
 
 List all issue labels.
@@ -88,19 +120,37 @@ Steps:
 3. Follows pagination until all labels are collected.
 4. Prints all labels as JSON.
 
-### `linear issues --labels <names...>`
+### `linear workflow-states`
 
-List issues matching one or more labels.
+List workflow states.
 
 Options:
-- `-l, --labels <names...>` — one or more label names (required, space-separated, case-sensitive).
+- `--team <id>` — filter by team ID.
+
+Steps:
+1. Reads the API key from config.
+2. Fetches workflow states with `client.workflowStates()`, page size 250, optionally filtered by team.
+3. Follows pagination until all states are collected.
+4. Prints all states as JSON.
+
+### `linear issues`
+
+List issues with optional filters.
+
+Options:
+- `-l, --labels <names...>` — filter by one or more label names (space-separated, case-sensitive).
+- `--team <id>` — filter by team ID.
+- `--assignee <id>` — filter by assignee user ID.
+- `--state <id>` — filter by workflow state ID.
+- `--priority <n>` — filter by priority (0=no priority, 1=urgent, 2=high, 3=medium, 4=low).
 - `--first <n>` — page size (default: 50).
 
 Steps:
 1. Reads the API key from config.
-2. Queries `client.issues()` with a filter: `{ labels: { name: { in: opts.labels } } }`.
-3. Follows pagination until all matching issues are collected.
-4. Prints all issues as JSON.
+2. Builds a filter object from any provided options.
+3. Queries `client.issues()` with the constructed filter.
+4. Follows pagination until all matching issues are collected.
+5. Prints all issues as JSON.
 
 When multiple labels are given, issues matching **any** of them are returned (OR semantics).
 
@@ -114,6 +164,47 @@ Steps:
 3. If that fails, falls back to `client.searchIssues(id, { first: 1, includeArchived: true })` to resolve identifiers like `ENG-123`.
 4. Fetches all comments on the issue via `issue.comments()` with pagination.
 5. Prints the issue with its comments as JSON.
+
+### `linear issue-create`
+
+Create a new issue.
+
+Options:
+- `--team <id>` — team ID (required).
+- `--title <text>` — issue title (required).
+- `--description <markdown>` — issue description.
+- `--assignee <id>` — assignee user ID.
+- `--state <id>` — workflow state ID.
+- `--priority <n>` — priority (0–4).
+- `--labels <ids...>` — label IDs to apply.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.createIssue(input)`.
+3. Prints the created issue as JSON.
+
+### `linear issue-update <id>`
+
+Update an existing issue by UUID or identifier.
+
+Options (all optional; at least one required):
+- `--title <text>`, `--description <markdown>`, `--assignee <id>`, `--state <id>`, `--priority <n>`, `--labels <ids...>`.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves the issue UUID (with identifier fallback via `searchIssues`).
+3. Calls `client.updateIssue(uuid, input)`.
+4. Prints the updated issue as JSON.
+
+### `linear issue-delete <id>`
+
+Delete an issue by UUID or identifier.
+
+Steps:
+1. Reads the API key from config.
+2. Resolves the issue UUID (with identifier fallback).
+3. Calls `client.deleteIssue(uuid)`.
+4. Prints `{ "success": true/false }` as JSON.
 
 ### `linear comment-add <issueId> -b <body>`
 
@@ -167,6 +258,93 @@ Steps:
 4. Follows pagination until all comments are collected.
 5. Prints all comments as JSON.
 
+### `linear projects`
+
+List projects.
+
+Options:
+- `--team <id>` — filter by team ID.
+- `--first <n>` — page size (default: 50).
+
+Steps:
+1. Reads the API key from config.
+2. Fetches projects with `client.projects()`, optionally filtered by accessible team.
+3. Follows pagination until all projects are collected.
+4. Prints all projects as JSON.
+
+### `linear project <id>`
+
+Fetch a single project by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.project(id)`.
+3. Prints the project as JSON.
+
+### `linear cycles`
+
+List cycles.
+
+Options:
+- `--team <id>` — filter by team ID.
+- `--first <n>` — page size (default: 50).
+
+Steps:
+1. Reads the API key from config.
+2. Fetches cycles with `client.cycles()`, optionally filtered by team.
+3. Follows pagination until all cycles are collected.
+4. Prints all cycles as JSON.
+
+### `linear cycle <id>`
+
+Fetch a single cycle by ID.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.cycle(id)`.
+3. Prints the cycle as JSON.
+
+### `linear roadmaps`
+
+List all roadmaps.
+
+Steps:
+1. Reads the API key from config.
+2. Fetches roadmaps with `client.roadmaps()`, page size 50.
+3. Follows pagination until all roadmaps are collected.
+4. Prints all roadmaps as JSON.
+
+### `linear notifications`
+
+List notifications for the authenticated user.
+
+Options:
+- `--first <n>` — page size (default: 50).
+
+Steps:
+1. Reads the API key from config.
+2. Fetches notifications with `client.notifications()`.
+3. Follows pagination until all notifications are collected.
+4. Prints all notifications as JSON.
+
+### `linear notification-mark-read <id>`
+
+Mark a notification as read.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.updateNotification(id, { readAt: <now> })`.
+3. Prints the updated notification as JSON.
+
+### `linear notification-mark-unread <id>`
+
+Mark a notification as unread.
+
+Steps:
+1. Reads the API key from config.
+2. Calls `client.updateNotification(id, { readAt: null })`.
+3. Prints the updated notification as JSON.
+
 ### `linear status`
 
 Check Linear platform status.
@@ -188,7 +366,7 @@ If the config file is missing, the CLI prints an error directing the user to run
 
 ### Pagination
 
-All list commands (`users`, `labels`, `issues`, `comments-mine`) follow the same pattern:
+All list commands (`users`, `teams`, `labels`, `workflow-states`, `issues`, `projects`, `cycles`, `roadmaps`, `notifications`, `comments-mine`) follow the same pattern:
 
 1. Make an initial query with a `first` (page size) parameter.
 2. Push the result `nodes` into an accumulator array.
@@ -211,18 +389,32 @@ The `status` command bypasses the Linear SDK entirely. It makes a raw HTTPS GET 
 flowchart LR
     User -->|linear <cmd>| CLI[cli.js]
     CLI --> Init[init.js]
+    CLI --> Me[me.js]
     CLI --> Search[search.js]
     CLI --> Users[users.js]
+    CLI --> Teams[teams.js]
     CLI --> Labels[labels.js]
+    CLI --> WS[workflow-states.js]
     CLI --> Issues[issues.js]
     CLI --> Comments[comments.js]
+    CLI --> Projects[projects.js]
+    CLI --> Cycles[cycles.js]
+    CLI --> Roadmaps[roadmaps.js]
+    CLI --> Notifications[notifications.js]
     CLI --> Status[status.js]
     Init --> Config[config.js]
+    Me --> Config
     Search --> Config
     Users --> Config
+    Teams --> Config
     Labels --> Config
+    WS --> Config
     Issues --> Config
     Comments --> Config
+    Projects --> Config
+    Cycles --> Config
+    Roadmaps --> Config
+    Notifications --> Config
     Config --> SDK["@linear/sdk"]
     SDK --> API["Linear GraphQL API"]
     Status --> Helpers[helpers.js]
@@ -264,11 +456,18 @@ linear-cli/
 │   ├── helpers.js             # httpGet(), printJson(), STATUS_HOST constant
 │   └── commands/
 │       ├── init.js            # `init` command — API key setup and validation
+│       ├── me.js              # `me` command — authenticated user profile
 │       ├── search.js          # `search` command — full-text search (Issue, Document, Project)
 │       ├── users.js           # `users` command — list organization users
+│       ├── teams.js           # `teams` + `team` commands — list teams, fetch single team
 │       ├── labels.js          # `labels` command — list issue labels
-│       ├── issues.js          # `issues` + `issue` commands — list by label, fetch single with comments
+│       ├── workflow-states.js # `workflow-states` command — list workflow states
+│       ├── issues.js          # `issues`, `issue`, `issue-create`, `issue-update`, `issue-delete`
 │       ├── comments.js        # `comment-add`, `comment-edit`, `comment-delete`, `comment-get`, `comments-mine`
+│       ├── projects.js        # `projects` + `project` commands
+│       ├── cycles.js          # `cycles` + `cycle` commands
+│       ├── roadmaps.js        # `roadmaps` command
+│       ├── notifications.js   # `notifications`, `notification-mark-read`, `notification-mark-unread`
 │       └── status.js          # `status` command — Linear platform status check
 ├── assets/
 │   └── og-image.svg           # Project banner image
@@ -392,7 +591,6 @@ All list commands fetch every page before printing. This is simpler than streami
 
 ## Non-Goals
 
-- **Issue creation / mutation.** The CLI is read-heavy by design. Issue creation involves many fields (team, assignee, priority, etc.) that are better handled in the Linear UI or via scripts using the SDK directly.
 - **Interactive TUI.** The CLI outputs JSON for composability. No curses-based UI, no interactive prompts beyond `init`.
 - **Webhook handling.** No server component. The CLI is a client that talks to Linear's API on demand.
 - **Multi-workspace.** One API key, one workspace. Switching workspaces requires re-running `init --force`.

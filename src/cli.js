@@ -1,13 +1,20 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
+const { registerInit } = require("./commands/init");
+const { registerMe } = require("./commands/me");
 const { registerSearch } = require("./commands/search");
 const { registerUsers } = require("./commands/users");
+const { registerTeams } = require("./commands/teams");
 const { registerLabels } = require("./commands/labels");
+const { registerWorkflowStates } = require("./commands/workflow-states");
 const { registerIssues } = require("./commands/issues");
 const { registerComments } = require("./commands/comments");
+const { registerProjects } = require("./commands/projects");
+const { registerCycles } = require("./commands/cycles");
+const { registerRoadmaps } = require("./commands/roadmaps");
+const { registerNotifications } = require("./commands/notifications");
 const { registerStatus } = require("./commands/status");
-const { registerInit } = require("./commands/init");
 const { version } = require("../package.json");
 
 // ---------------------------------------------------------------------------
@@ -28,11 +35,18 @@ program
 
 // Register commands
 registerInit(program);
+registerMe(program);
 registerSearch(program);
 registerUsers(program);
+registerTeams(program);
 registerLabels(program);
+registerWorkflowStates(program);
 registerIssues(program);
 registerComments(program);
+registerProjects(program);
+registerCycles(program);
+registerRoadmaps(program);
+registerNotifications(program);
 registerStatus(program);
 
 // ---------------------------------------------------------------------------
