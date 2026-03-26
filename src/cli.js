@@ -17,6 +17,10 @@ const { registerNotifications } = require("./commands/notifications");
 const { registerDocuments } = require("./commands/documents");
 const { registerAttachments } = require("./commands/attachments");
 const { registerRelations } = require("./commands/relations");
+const { registerMilestones } = require("./commands/milestones");
+const { registerProjectUpdates } = require("./commands/project-updates");
+const { registerWebhooks } = require("./commands/webhooks");
+const { registerInitiatives } = require("./commands/initiatives");
 const { registerStatus } = require("./commands/status");
 const { version } = require("../package.json");
 
@@ -53,6 +57,10 @@ registerNotifications(program);
 registerDocuments(program);
 registerAttachments(program);
 registerRelations(program);
+registerMilestones(program);
+registerProjectUpdates(program);
+registerWebhooks(program);
+registerInitiatives(program);
 registerStatus(program);
 
 // ---------------------------------------------------------------------------

@@ -3,6 +3,19 @@ const { printJson } = require("../helpers");
 
 function registerWorkflowStates(program) {
   program
+    .command("workflow-state <id>")
+    .description(
+      "Fetch a single workflow state by ID.\n\n" +
+        "Example:\n" +
+        "  $ linear workflow-state abc-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      const state = await client.workflowState(id);
+      printJson(state);
+    });
+
+  program
     .command("workflow-states")
     .description(
       "List workflow states.\n\n" +

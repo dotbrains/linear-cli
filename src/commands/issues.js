@@ -185,6 +185,79 @@ function registerIssues(program) {
     });
 
   program
+    .command("issue-subscribe <id>")
+    .description(
+      "Subscribe to an issue to receive notifications.\n\n" +
+        "Example:\n" +
+        "  $ linear issue-subscribe ENG-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      let issue;
+      try {
+        issue = await client.issue(id);
+      } catch {
+        const results = await client.searchIssues(id, { first: 1, includeArchived: true });
+        if (!results.nodes.length) {
+          console.error(`Issue not found: ${id}`);
+          process.exit(1);
+        }
+        issue = results.nodes[0];
+      }
+      const result = await client.issueSubscribe(issue.id);
+      printJson(await result.issue);
+    });
+
+  program
+    .command("issue-unsubscribe <id>")
+    .description(
+      "Unsubscribe from an issue.\n\n" +
+        "Example:\n" +
+        "  $ linear issue-unsubscribe ENG-123"
+    )
+    .action(async (id) => {
+      const client = createClient();
+      let issue;
+      try {
+        issue = await client.issue(id);
+      } catch {
+        const results = await client.searchIssues(id, { first: 1, includeArchived: true });
+        if (!results.nodes.length) {
+          console.error(`Issue not found: ${id}`);
+          process.exit(1);
+        }
+        issue = results.nodes[0];
+      }
+      const result = await client.issueUnsubscribe(issue.id);
+      printJson(await result.issue);
+    });
+
+  program
+    .command("issue-reminder <id>")
+    .description(
+      "Set a reminder on an issue.\n\n" +
+        "Example:\n" +
+        "  $ linear issue-reminder ENG-123 --remind-at 2024-12-01T09:00:00Z"
+    )
+    .requiredOption("--remind-at <datetime>", "ISO 8601 datetime to send the reminder")
+    .action(async (id, opts) => {
+      const client = createClient();
+      let issue;
+      try {
+        issue = await client.issue(id);
+      } catch {
+        const results = await client.searchIssues(id, { first: 1, includeArchived: true });
+        if (!results.nodes.length) {
+          console.error(`Issue not found: ${id}`);
+          process.exit(1);
+        }
+        issue = results.nodes[0];
+      }
+      const result = await client.issueReminder(issue.id, { reminderAt: opts.remindAt });
+      printJson(await result.issue);
+    });
+
+  program
     .command("issue <id>")
     .description("Fetch a single issue by ID or identifier (e.g. ENG-123)")
     .action(async (id) => {

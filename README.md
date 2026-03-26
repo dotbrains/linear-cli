@@ -87,12 +87,19 @@ npm link
 | `linear teams` | List all teams |
 | `linear team <id>` | Fetch a single team by ID |
 | `linear labels` | List all issue labels |
+| `linear label-create` | Create a label (`--team`, `--name` required; optional `--color`) |
+| `linear label-update <id>` | Update a label |
+| `linear label-delete <id>` | Delete a label |
 | `linear workflow-states` | List workflow states (optionally filter by `--team <id>`) |
+| `linear workflow-state <id>` | Fetch a single workflow state by ID |
 | `linear issues` | List issues with optional filters (`--labels`, `--team`, `--assignee`, `--state`, `--priority`) |
 | `linear issue <id>` | Fetch a single issue by ID or identifier (e.g. ENG-123) |
 | `linear issue-create` | Create a new issue (`--team` and `--title` required) |
 | `linear issue-update <id>` | Update an existing issue |
 | `linear issue-delete <id>` | Delete an issue |
+| `linear issue-subscribe <id>` | Subscribe to an issue |
+| `linear issue-unsubscribe <id>` | Unsubscribe from an issue |
+| `linear issue-reminder <id>` | Set a reminder on an issue (`--remind-at` required) |
 | `linear comment-add <issueId> -b <body>` | Add a comment to an issue |
 | `linear comment-edit <commentId> -b <body>` | Edit an existing comment |
 | `linear comment-delete <commentId>` | Delete a comment |
@@ -130,6 +137,21 @@ npm link
 | `linear attachment-link-github-pr <issueId>` | Link a GitHub PR to an issue (`--url` required) |
 | `linear attachment-link-github-issue <issueId>` | Link a GitHub Issue to a Linear issue (`--url` required) |
 | `linear attachment-delete <id>` | Delete an attachment |
+| `linear milestones` | List project milestones (optionally filter by `--project <id>`) |
+| `linear milestone <id>` | Fetch a single milestone by ID |
+| `linear milestone-create` | Create a milestone (`--project`, `--name` required) |
+| `linear milestone-update <id>` | Update a milestone |
+| `linear milestone-delete <id>` | Delete a milestone |
+| `linear project-updates` | List project updates (optionally filter by `--project <id>`) |
+| `linear project-update <id>` | Fetch a single project update by ID |
+| `linear project-update-create` | Post a project update (`--project`, `--body` required) |
+| `linear webhooks` | List all webhooks |
+| `linear webhook <id>` | Fetch a single webhook by ID |
+| `linear webhook-create` | Create a webhook (`--url` required) |
+| `linear webhook-update <id>` | Update a webhook |
+| `linear webhook-delete <id>` | Delete a webhook |
+| `linear initiatives` | List all initiatives |
+| `linear initiative <id>` | Fetch a single initiative by ID |
 | `linear status` | Check Linear platform status |
 
 ## Configuration
